@@ -1,4 +1,4 @@
-package com.ex.basic;
+package com.ex.logical.strings;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.ex.basic;
+package com.ex.logical.numbers;
 
 public class Swap2Num {
 
