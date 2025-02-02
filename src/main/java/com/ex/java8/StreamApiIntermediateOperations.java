@@ -2,10 +2,12 @@ package com.ex.java8;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-public class StreamApi {
+public class StreamApiIntermediateOperations {
 	public static void main(String[] args) {
 
 //		1. filter
@@ -77,7 +79,6 @@ public class StreamApi {
 		System.out.println("========================================================");
 
 //		3. flatMap--> from list of list get internal list 
-//		e.g list of orders may have list of items
 //		Question: combine 2 integer list into one list but without duplicates
 		System.out.println("intermediate flatMap() + distinct()");
 		List<Integer> l1 = List.of(10, 20, 30, 40);
@@ -87,7 +88,7 @@ public class StreamApi {
 		System.out.println(collect9);
 		System.out.println("========================================================");
 
-//		3. flatMap--> from list of list get internal list 
+//		4. distinct
 //		Question: Remove duplicate numbers from the list
 		System.out.println("intermediate distinct()");
 		List<Integer> l4 = List.of(10, 20, 30, 40, 10, 30);
@@ -96,6 +97,59 @@ public class StreamApi {
 		System.out.println(collect10);
 		System.out.println("========================================================");
 
+//		4. distinct
+//		Question: Remove duplicate numbers from the list ( because of set - insertion order is not preserved)
+		System.out.println("intermediate distinct()");
+		List<Integer> l5 = List.of(10, 20, 30, 40, 10, 30);
+		Set<Integer> collect11 = l5.stream().collect(Collectors.toSet());
+		System.out.println(l5);
+		System.out.println(collect11);
+		System.out.println("========================================================");
+
+//		5. sorted
+//		Question: Sort list of name in alphabetical order
+		System.out.println("intermediate sorted()");
+		List<String> l6 = List.of("Bhaiyya", "shaikh", "Samir", "Zeeshan", "Ali", "Shaikh", "ali");
+		List<String> collect12 = l6.stream().sorted().collect(Collectors.toList());
+		System.out.println(l6);
+		System.out.println(collect12);
+		System.out.println("========================================================");
+
+//		5. sorted
+//		Question: Sort list of name in alphabetical order in reverse
+		System.out.println("intermediate sorted() REVERSED");
+		List<String> l7 = List.of("Bhaiyya", "shaikh", "Samir", "Zeeshan", "Ali", "Shaikh", "ali");
+		List<String> collect13 = l7.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+		System.out.println(l7);
+		System.out.println(collect13);
+		System.out.println("========================================================");
+
+//		6. peek --> primarily used for debugging, it allows you to perform an intermediate operation on each element of stream without modifying the stream itself.
+//		Question: Sort list of name in alphabetical order in reverse
+		System.out.println("intermediate peek()");
+		List<String> l8 = List.of("Bhaiyya", "shaikh", "Samir", "Zeeshan", "Ali", "Shaikh", "ali");
+		List<String> collect14 = l8.stream().peek(s -> System.out.println("Original Name from DB : " + s))
+				.map(String::toUpperCase).collect(Collectors.toList());
+		System.out.println(collect14);
+		System.out.println("========================================================");
+		
+//		7. limit
+//		Question: Fetch first 3 numbers from the list of integers
+		System.out.println("intermediate limit()");
+		List<Integer> l9 = List.of(10, 20, 30, 40, 10, 30);
+		List<Integer> collect15 = l9.stream().limit(3).collect(Collectors.toList());
+		System.out.println(l9);
+		System.out.println(collect15);
+		System.out.println("========================================================");
+		
+//		8. skip
+//		Question: skip first 2 numbers from the list of integers
+		System.out.println("intermediate skip()");
+		List<Integer> l10 = List.of(10, 20, 30, 40, 10, 30);
+		List<Integer> collect16 = l10.stream().skip(2).collect(Collectors.toList());
+		System.out.println(l10);
+		System.out.println(collect16);
+		System.out.println("========================================================");
 	}
 
 }
