@@ -47,6 +47,6 @@ public class HighestThirdInArray {
 			}
 		}
 
-		System.out.println("Second Highest number is ==> " + thirdHighest);
+		System.out.println("Third Highest number is ==> " + thirdHighest);
 	}
 }
